@@ -1,0 +1,102 @@
+2026-11-23 23:27:09.948 CST [314] user= db= app= client= LOG:  starting PostgreSQL 16.15 (Ubuntu 16.15-1.pgdg26.04+2) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit
+2026-11-23 23:27:09.949 CST [314] user= db= app= client= LOG:  listening on IPv4 address "127.0.0.1", port 5433
+2026-11-23 23:27:09.957 CST [314] user= db= app= client= LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5433"
+2026-11-23 23:27:09.992 CST [340] user= db= app= client= LOG:  database system was shut down at 2026-11-19 00:25:40 CST
+2026-11-23 23:27:10.028 CST [314] user= db= app= client= LOG:  database system is ready to accept connections
+2026-11-23 23:27:10.538 CST [400] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-11-23 23:27:11.052 CST [555] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-11-23 23:27:11.053 CST [555] user=postgres db=template1 app=[unknown] client=[local] LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/16/main/pg_hba.conf:118)
+2026-11-23 23:27:11.053 CST [555] user=postgres db=template1 app=[unknown] client=[local] LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2026-11-23 23:27:11.070 CST [555] user=postgres db=template1 app=psql client=[local] LOG:  disconnection: session time: 0:00:00.018 user=postgres database=template1 host=[local]
+2026-11-23 23:27:11.578 CST [643] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-11-23 23:27:11.580 CST [643] user=postgres db=template1 app=[unknown] client=[local] LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/16/main/pg_hba.conf:118)
+2026-11-23 23:27:11.580 CST [643] user=postgres db=template1 app=[unknown] client=[local] LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2026-11-23 23:27:11.583 CST [643] user=postgres db=template1 app=psql client=[local] LOG:  disconnection: session time: 0:00:00.004 user=postgres database=template1 host=[local]
+2026-11-23 23:27:12.091 CST [656] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-11-23 23:27:12.092 CST [656] user=postgres db=template1 app=[unknown] client=[local] LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/16/main/pg_hba.conf:118)
+2026-11-23 23:27:12.092 CST [656] user=postgres db=template1 app=[unknown] client=[local] LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2026-11-23 23:27:12.093 CST [656] user=postgres db=template1 app=psql client=[local] LOG:  disconnection: session time: 0:00:00.002 user=postgres database=template1 host=[local]
+2026-11-23 23:31:04.423 CST [1144] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-11-23 23:31:04.424 CST [1144] user=postgres db=postgres app=[unknown] client=[local] LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/16/main/pg_hba.conf:118)
+2026-11-23 23:31:04.424 CST [1144] user=postgres db=postgres app=[unknown] client=[local] LOG:  connection authorized: user=postgres database=postgres application_name=psql
+2026-11-23 23:31:04.458 CST [1144] user=postgres db=postgres app=psql client=[local] LOG:  disconnection: session time: 0:00:00.035 user=postgres database=postgres host=[local]
+2026-11-23 23:31:51.784 CST [1163] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-11-23 23:31:51.784 CST [1163] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/16/main/pg_hba.conf:118)
+2026-11-23 23:31:51.784 CST [1163] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authorized: user=postgres database=comercial application_name=psql
+2026-11-23 23:32:10.090 CST [338] user= db= app= client= LOG:  checkpoint starting: time
+2026-11-23 23:32:10.144 CST [338] user= db= app= client= LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.017 s, sync=0.006 s, total=0.054 s; sync files=2, longest=0.004 s, average=0.003 s; distance=0 kB, estimate=0 kB; lsn=0/19F4478, redo lsn=0/19F4440
+2026-11-23 23:34:58.603 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: INSERT INTO clientes (nombre, correo, telefono, rfc, edad, ciudad, codigo_postal) VALUES
+	('Ana Lopez', 'ANA.LOPEZ@example.test', '6671234567', 'LOAA850315AB', 41, 'Culiacan', '80000'),
+	('Jorge Díaz', 'sin-correo', '667', NULL, -3, 'Culiacán', '8000');
+2026-11-23 23:36:49.277 CST [1163] user=postgres db=comercial app=psql client=[local] ERROR:  syntax error at or near "correo_normalizado" at character 1
+2026-11-23 23:36:49.277 CST [1163] user=postgres db=comercial app=psql client=[local] STATEMENT:  correo_normalizado   | registros | ids
+	------------------------+-----------+------
+	 ana.lopez@example.test |         2 | 1, 7
+	(1 row)
+	SELECT id, nombre, rfc
+	FROM clientes
+	WHERE rfc IS NULL
+	   OR rfc !~ '^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$';
+2026-11-23 23:37:10.220 CST [338] user= db= app= client= LOG:  checkpoint starting: time
+2026-11-23 23:37:10.884 CST [338] user= db= app= client= LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.610 s, sync=0.015 s, total=0.665 s; sync files=7, longest=0.009 s, average=0.003 s; distance=8 kB, estimate=8 kB; lsn=0/19F6740, redo lsn=0/19F6708
+2026-11-23 23:38:21.843 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: COMMENT ON TABLE clientes IS 'Clientes de Comercializadora Norte. Propietario: Gerencia Comercial. Custodio: DBA. Clasificación: confidencial (contiene datos personales).';
+2026-11-23 23:38:21.850 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: COMMENT ON COLUMN clientes.id IS 'Identificador interno del cliente. Generado por el sistema.';
+2026-11-23 23:38:21.855 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: COMMENT ON COLUMN clientes.nombre IS 'Nombre completo. Dato personal identificador directo.';
+2026-11-23 23:38:21.858 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: COMMENT ON COLUMN clientes.correo IS 'Correo de contacto. Dato personal. Uso: notificaciones al cliente.';
+2026-11-23 23:38:21.862 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: COMMENT ON COLUMN clientes.rfc IS 'RFC del cliente. Dato personal. Uso: facturación. Cambios auditados en auditoria.cambios_clientes.';
+2026-11-23 23:38:21.865 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: COMMENT ON COLUMN clientes.edad IS 'Edad en años cumplidos. Dato personal. Uso: analítica agregada.';
+2026-11-23 23:39:50.240 CST [1163] user=postgres db=comercial app=psql client=[local] ERROR:  syntax error at or near "psql" at character 1
+2026-11-23 23:39:50.240 CST [1163] user=postgres db=comercial app=psql client=[local] STATEMENT:  psql -U postgres -d comercial --csv -c "SELECT c.column_name AS columna, c.data_type AS tipo, c.character_maximum_length AS longitud, c.is_nullable AS acepta_nulos, col_description('public.clientes'::regclass, c.ordinal_position) AS descripcion FROM information_schema.columns c WHERE c.table_schema = 'public' AND c.table_name = 'clientes' ORDER BY c.ordinal_position" > evidencias/diccionario-clientes.csv
+	ANALYZE;
+2026-11-23 23:41:18.119 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: CREATE SCHEMA gobierno;
+2026-11-23 23:41:18.124 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: REVOKE ALL ON SCHEMA gobierno FROM PUBLIC;
+2026-11-23 23:41:18.128 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: CREATE TABLE gobierno.solicitudes_cambio (
+	    folio            TEXT PRIMARY KEY,
+	    descripcion      TEXT NOT NULL,
+	    solicitado_por   TEXT NOT NULL,
+	    aprobado_por     TEXT,
+	    ambiente         TEXT NOT NULL CHECK (ambiente IN ('desarrollo', 'pruebas', 'produccion')),
+	    fecha_aprobacion TIMESTAMPTZ,
+	    ventana_inicio   TIMESTAMPTZ,
+	    ventana_fin      TIMESTAMPTZ
+	);
+2026-11-23 23:41:18.160 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: COMMENT ON TABLE gobierno.solicitudes_cambio IS 'Registro de solicitudes de cambio en la base comercial. Propietario: Comité de cambios. Custodio: DBA. Evidencia de POL-06.';
+2026-11-23 23:42:01.006 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: INSERT INTO gobierno.solicitudes_cambio VALUES
+	('CAM-2026-014', 'Agregar columna canal_alta a clientes', 'Gerencia Comercial',
+	 'Comité de cambios', 'produccion', now() - interval '1 day',
+	 now() - interval '5 minutes', now() + interval '1 hour');
+2026-11-23 23:42:01.024 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: ALTER TABLE clientes ADD COLUMN canal_alta VARCHAR(20);
+2026-11-23 23:42:01.029 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  statement: COMMENT ON COLUMN clientes.canal_alta IS 'Canal por el que se registró el cliente. Cambio CAM-2026-014.';
+2026-11-23 23:42:10.943 CST [338] user= db= app= client= LOG:  checkpoint starting: time
+2026-11-23 23:42:15.170 CST [338] user= db= app= client= LOG:  checkpoint complete: wrote 42 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.130 s, sync=0.030 s, total=4.228 s; sync files=35, longest=0.007 s, average=0.001 s; distance=167 kB, estimate=167 kB; lsn=0/1A20628, redo lsn=0/1A205F0
+2026-11-23 23:43:10.311 CST [1163] user=postgres db=comercial app=psql client=[local] LOG:  disconnection: session time: 0:11:18.527 user=postgres database=comercial host=[local]
+2026-11-23 23:43:26.873 CST [1299] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-11-23 23:43:26.874 CST [1299] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authenticated: identity="ernes" method=peer (/etc/postgresql/16/main/pg_hba.conf:118)
+2026-11-23 23:43:26.874 CST [1299] user=postgres db=comercial app=[unknown] client=[local] LOG:  provided user name (postgres) and authenticated user name (ernes) do not match
+2026-11-23 23:43:26.874 CST [1299] user=postgres db=comercial app=[unknown] client=[local] FATAL:  Peer authentication failed for user "postgres"
+2026-11-23 23:43:26.874 CST [1299] user=postgres db=comercial app=[unknown] client=[local] DETAIL:  Connection matched file "/etc/postgresql/16/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2026-11-23 23:45:21.673 CST [1334] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-11-23 23:45:21.674 CST [1334] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authenticated: identity="root" method=peer (/etc/postgresql/16/main/pg_hba.conf:118)
+2026-11-23 23:45:21.674 CST [1334] user=postgres db=comercial app=[unknown] client=[local] LOG:  provided user name (postgres) and authenticated user name (root) do not match
+2026-11-23 23:45:21.674 CST [1334] user=postgres db=comercial app=[unknown] client=[local] FATAL:  Peer authentication failed for user "postgres"
+2026-11-23 23:45:21.674 CST [1334] user=postgres db=comercial app=[unknown] client=[local] DETAIL:  Connection matched file "/etc/postgresql/16/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2026-11-23 23:45:29.497 CST [1348] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-11-23 23:45:29.497 CST [1348] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/16/main/pg_hba.conf:118)
+2026-11-23 23:45:29.497 CST [1348] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authorized: user=postgres database=comercial application_name=psql
+2026-11-23 23:45:29.518 CST [1348] user=postgres db=comercial app=psql client=[local] LOG:  disconnection: session time: 0:00:00.021 user=postgres database=comercial host=[local]
+2026-11-23 23:45:45.136 CST [1364] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-11-23 23:45:45.137 CST [1364] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/16/main/pg_hba.conf:118)
+2026-11-23 23:45:45.137 CST [1364] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authorized: user=postgres database=comercial application_name=psql
+2026-11-23 23:45:45.160 CST [1364] user=postgres db=comercial app=psql client=[local] LOG:  disconnection: session time: 0:00:00.024 user=postgres database=comercial host=[local]
+2026-11-23 23:45:54.350 CST [1379] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-11-23 23:45:54.351 CST [1379] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/16/main/pg_hba.conf:118)
+2026-11-23 23:45:54.351 CST [1379] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authorized: user=postgres database=comercial application_name=psql
+2026-11-23 23:45:54.356 CST [1379] user=postgres db=comercial app=psql client=[local] LOG:  disconnection: session time: 0:00:00.005 user=postgres database=comercial host=[local]
+2026-11-23 23:46:02.028 CST [1393] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-11-23 23:46:02.029 CST [1393] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/16/main/pg_hba.conf:118)
+2026-11-23 23:46:02.029 CST [1393] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authorized: user=postgres database=comercial application_name=psql
+2026-11-23 23:46:02.032 CST [1393] user=postgres db=comercial app=psql client=[local] LOG:  disconnection: session time: 0:00:00.003 user=postgres database=comercial host=[local]
+2026-11-23 23:47:25.497 CST [1414] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-11-23 23:47:25.498 CST [1414] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/16/main/pg_hba.conf:118)
+2026-11-23 23:47:25.498 CST [1414] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authorized: user=postgres database=comercial application_name=psql
+
